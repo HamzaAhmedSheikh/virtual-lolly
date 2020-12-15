@@ -1,7 +1,9 @@
 import { gql, useMutation, useQuery } from "@apollo/client";
-import React, { useRef, useState } from "react"
+import { navigate } from "gatsby";
+import React, { useRef, useState, useEffect } from "react"
 import Header from "../component/Header"
 import Lolly from "../component/Lolly"
+
 
 const GET_LOLLY = gql`
 {
@@ -32,22 +34,50 @@ export default function CreateNew() {
     //const {loading, error, data } = useQuery(GETDATA);
     const [createLolly, { data }] = useMutation(createLollyMutation);
 
-    const submitLollyForm = async () => {
-        console.log("clicked");
-        console.log("color 1", color1);
-        console.log("sender", senderRef.current.value);
+    const createLollySubmit = async () => {
+        console.log("recipientNameRef = ", recipientNameRef.current.value);
         const result = await createLolly({
-            variables : {
+            variables: {
                 recipientName: recipientNameRef.current.value,
-                message : messageRef.current.value,
+                message: messageRef.current.value,
                 senderName: senderRef.current.value,
                 flavourTop: color1,
                 flavourMiddle: color2,
                 flavourBottom: color3
             }
-        });
-        console.log("result form server = ",result);
+        })
+
+        console.log("result = ", result.data.createLolly);
+        navigate(`/showLolly?id=${result.data.createLolly.lollyPath}`);
     }
+
+    useEffect(() => {
+        async function runHook() {
+            const response = await fetch("https://api.netlify.com/build_hooks/5fd80ff44ef9f400bb83ae74", {
+                method: "POST",
+            });
+
+        }
+        runHook();
+
+    }, [data])
+
+    // const submitLollyForm = async () => {
+    //     console.log("clicked");
+    //     console.log("color 1", color1);
+    //     console.log("sender", senderRef.current.value);
+    //     const result = await createLolly({
+    //         variables : {
+    //             recipientName: recipientNameRef.current.value,
+    //             message : messageRef.current.value,
+    //             senderName: senderRef.current.value,
+    //             flavourTop: color1,
+    //             flavourMiddle: color2,
+    //             flavourBottom: color3
+    //         }
+    //     });
+    //     console.log("result form server = ",result);
+    // }
 
   return (
     <div className="container">
@@ -98,7 +128,7 @@ export default function CreateNew() {
                     </label>
                     <input type="text" name="senderName" id="senderName" ref={senderRef}/>
                 </div>
-                <input type="button" value="Create" onClick={submitLollyForm} />
+                <input type="button" value="Create" onClick={createLollySubmit} />
             </div>
         </div>
     </div>
