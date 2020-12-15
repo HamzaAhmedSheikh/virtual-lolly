@@ -4,6 +4,9 @@ const faunadb = require("faunadb");
 const q = faunadb.query;
 const shortid = require("shortid");
 
+require('dotenv').config(); 
+
+
 const typeDefs = gql`
   type Query {
     hello: String
@@ -32,7 +35,7 @@ const resolvers = {
 
     getLolly: async (_,{ lollyPath }) => {
       console.log("Hey! this is your lolly-path ", lollyPath);
-      const client = new faunadb.Client({secret: "fnAD9EWZcrACDYf3XVZTzlFJ2MQirQYxT911Ru5O"});
+      const client = new faunadb.Client({secret: process.env.FAUNADB_ADMIN_SECRET });
       var result = await client.query(
         q.Get(q.Match(q.Index("lolly_by_path"), lollyPath))        
       )

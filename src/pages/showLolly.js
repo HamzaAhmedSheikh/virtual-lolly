@@ -5,6 +5,7 @@ import { gql, useQuery } from "@apollo/client";
 import { useQueryParam } from "gatsby-query-params";
 
 
+
 const GET_LOLLY = gql`
   query getData($lollyPath: String!) {
     getLolly(lollyPath: $lollyPath) {
