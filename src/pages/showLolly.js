@@ -39,7 +39,7 @@ export default function ShowLolly({ location }) {
     {data && data.getLolly && 
     <div className="newLollyForm1">
     <div>
-        <Lolly lollyTopFill={data.getLolly.flavourTop} lollyMiddleFill={data.getLolly.flavourMiddle} lollyBottomFill={data.getLolly.flavourBottom} />
+        <Lolly fillLollyTop={data.getLolly.flavourTop} fillLollyMiddle={data.getLolly.flavourMiddle} fillLollyBottom={data.getLolly.flavourBottom} />
     </div>
     <div className="result">
             <div className="details" >
