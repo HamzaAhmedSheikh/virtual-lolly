@@ -27,7 +27,7 @@ export default function CreateNew() {
     const [color1, setColor1] = useState("#d52358");
     const [color2, setColor2] = useState("#e95946");
     const [color3, setColor3] = useState("#deaa43");
-    const [loading, setLoading] = (false);
+    
     const recipientNameRef = useRef();
     const messageRef = useRef();
     const senderRef = useRef();
@@ -135,7 +135,7 @@ export default function CreateNew() {
               ref={senderRef}
             />
             <div className="form-btn"> 
-              <button onClick={createLollySubmit}> {loading ? "freeze..." : "freeze"} </button>
+              <button onClick={createLollySubmit}> freeze </button>
             </div>  
           </div>
              
