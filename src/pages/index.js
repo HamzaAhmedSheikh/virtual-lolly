@@ -10,20 +10,21 @@ export default function Home() {
     <div className="container">
       <Header />
       <div className="listLollies">
-        <div>
-          <Lolly fillLollyTop="#d52358" fillLollyMiddle="#e95946" fillLollyBottom="#deaa43"  />
-        </div> 
-        <div>
-          <Lolly fillLollyTop="red" fillLollyMiddle="green" fillLollyBottom="blue"  />
-        </div>  
+        <Lolly fillLollyTop="#d52358" fillLollyMiddle="#e95946" fillLollyBottom="#deaa43"  />
+        <Lolly fillLollyTop="red" fillLollyMiddle="green" fillLollyBottom="blue"  />        
       </div>
-      <input type="button" value="Create New Lolly"
-        onClick={
-          ()=>{
-            navigate("/createNew");
+
+      <div className="input-wrapper"> 
+      <button className='' onClick={() => navigate('/createNew')}> Create New Lolly </button>
+        {/* <input type="button"             
+             value="Create New Lolly"
+             onClick={
+              () => {
+                navigate("/createNew");
+            }
           }
-        }
-      ></input>
+        ></input> */}
+      </div>
     </div>
 
   );
