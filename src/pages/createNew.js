@@ -31,7 +31,8 @@ export default function CreateNew() {
     const recipientNameRef = useRef();
     const messageRef = useRef();
     const senderRef = useRef();
-
+      console.log('color1 ==> ', color1);
+      console.log('setColor1 ==> ', setColor1);
     //const {loading, error, data } = useQuery(GETDATA);
     const [createLolly, { data }] = useMutation(createLollyMutation);
 
